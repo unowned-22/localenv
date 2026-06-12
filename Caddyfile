@@ -1,0 +1,27 @@
+app.localhost {
+    reverse_proxy app:3222
+}
+
+api.localhost {
+    reverse_proxy api:8080
+}
+
+storage.localhost {
+    reverse_proxy minio:9001
+}
+
+s3.localhost {
+    reverse_proxy minio:9000
+}
+
+queue.localhost {
+    reverse_proxy rabbitmq:15672
+}
+
+mailpit.localhost {
+    reverse_proxy mailpit:8025
+}
+
+db.localhost {
+    reverse_proxy adminer:8080
+}
