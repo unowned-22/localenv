@@ -4,9 +4,11 @@ REPOS := \
 	git@github.com:unowned-22/api.git \
 	git@github.com:unowned-22/unowned.git
 
-.PHONY: init clone pull up down
+.PHONY: init clone pull up down restart
 
 init: clone up
+
+restart: down up
 
 clone:
 	@mkdir -p $(WORKSPACE)
