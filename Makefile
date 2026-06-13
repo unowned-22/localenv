@@ -4,7 +4,7 @@ REPOS := \
 	git@github.com:unowned-22/api.git \
 	git@github.com:unowned-22/unowned.git
 
-.PHONY: init clone pull up down restart
+.PHONY: init clone pull up down restart api-ssh
 
 init: clone up
 
@@ -35,3 +35,6 @@ up:
 
 down:
 	docker compose down
+
+api-ssh:
+	docker compose exec -it api sh
