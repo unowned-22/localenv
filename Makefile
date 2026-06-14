@@ -2,7 +2,7 @@ WORKSPACE := workspace
 
 REPOS := \
 	git@github.com:unowned-22/api.git \
-	git@github.com:unowned-22/unowned.git
+	git@github.com:unowned-22/panel.git
 
 .PHONY: init clone pull up down restart api-ssh
 
