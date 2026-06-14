@@ -89,7 +89,6 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: rbmq
       RABBITMQ_DEFAULT_PASS: rbmq
-      DOMAINS: queue.localhost
     ports:
       - "5672:5672"
       - "15672:15672"
