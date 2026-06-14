@@ -6,14 +6,14 @@ REPOS := \
 
 .PHONY: help init clone pull up down restart api-ssh
 
-help:
+help: ## Show available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-25s %s\n", $$1, $$2}'
 
-init: clone up
+init: clone up ## Clone repositories and start containers
 
-restart: down up
+restart: down up ## Restart all containers
 
-clone:
+clone: ## Clone repositories
 	@mkdir -p $(WORKSPACE)
 	@for repo in $(REPOS); do \
 		name=$$(basename $$repo .git); \
@@ -25,7 +25,7 @@ clone:
 		fi; \
 	done
 
-pull:
+pull: ## Pull latest changes
 	@for dir in $(WORKSPACE)/*; do \
 		if [ -d "$$dir/.git" ]; then \
 			echo "Updating $$(basename $$dir)"; \
@@ -33,11 +33,11 @@ pull:
 		fi; \
 	done
 
-up:
+up: ## Start docker containers
 	docker compose up -d
 
-down:
+down: ## Stop docker containers
 	docker compose down
 
-api-ssh:
+api-ssh: ## Open shell inside api container
 	docker compose exec -it api sh
