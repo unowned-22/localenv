@@ -45,7 +45,7 @@ services:
     image: airlance/vite-react-vue:24-alpine
     container_name: app
     volumes:
-      - ./workspace/unowned:/app
+      - ./workspace/panel:/app
     depends_on:
       - api
     environment:
