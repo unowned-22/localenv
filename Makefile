@@ -4,7 +4,10 @@ REPOS := \
 	git@github.com:unowned-22/api.git \
 	git@github.com:unowned-22/panel.git
 
-.PHONY: init clone pull up down restart api-ssh
+.PHONY: help init clone pull up down restart api-ssh
+
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "%-25s %s\n", $$1, $$2}'
 
 init: clone up
 
