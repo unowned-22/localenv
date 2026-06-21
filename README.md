@@ -10,6 +10,7 @@ The environment includes:
 * MinIO
 * Mailpit
 * Adminer
+* Redis
 
 Application repositories are cloned automatically into the `workspace` directory using the provided Makefile.
 
@@ -27,6 +28,7 @@ localenv/
 ├── docker-compose.yml
 ├── Caddyfile
 ├── Makefile
+└── dockerfiles/
 └── workspace/
     ├── api/
     └── unowned/
@@ -38,7 +40,7 @@ Clone this repository:
 
 ```bash
 git clone <repository-url>
-cd localenv
+cd unowned
 ```
 
 Clone all project repositories and start the environment:
@@ -184,4 +186,3 @@ Password: studio-minio
 * All services are available through Caddy.
 * Application repositories are mounted into containers from the local `workspace` directory.
 * Docker volumes are used to persist PostgreSQL data.
-* HTTPS certificates are automatically handled by Caddy for local development.

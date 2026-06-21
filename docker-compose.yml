@@ -48,6 +48,26 @@ services:
     networks:
       - unowned
 
+  worker:
+    image: airlance/go:1.26.compile
+    container_name: worker
+    volumes:
+      - ./workspace/api:/app
+    command:
+      - CompileDaemon
+      - --build=go build -o worker ./cmd/app
+      - --command=./worker worker
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - unowned
+
   panel:
     image: airlance/vite-react-vue:24-alpine
     container_name: panel
@@ -57,20 +77,6 @@ services:
       - api
     environment:
       PORT: 3222
-    restart: unless-stopped
-    networks:
-      - unowned
-
-  worker:
-    image: airlance/go:1.26.compile
-    container_name: worker
-    volumes:
-      - ./workspace/api:/app
-    command: ["sh", "-c", "while [ ! -f ./app ]; do sleep 1; done && ./app worker"]
-    depends_on:
-      - api
-      - redis
-      - rabbitmq
     restart: unless-stopped
     networks:
       - unowned
