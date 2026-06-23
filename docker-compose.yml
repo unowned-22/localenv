@@ -53,10 +53,7 @@ services:
     container_name: worker
     volumes:
       - ./workspace/api:/app
-    command:
-      - CompileDaemon
-      - --build=go build -o worker ./cmd/app
-      - --command=./worker worker
+    command: ["sh", "-c", "while [ ! -f ./app ]; do sleep 1; done && ./app worker"]
     depends_on:
       postgres:
         condition: service_healthy
@@ -111,6 +108,8 @@ services:
     environment:
       MINIO_ROOT_USER: studio-minio
       MINIO_ROOT_PASSWORD: studio-minio
+    volumes:
+      - ./workspace/storage:/data
     networks:
       - unowned
 
