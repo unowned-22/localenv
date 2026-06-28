@@ -35,7 +35,7 @@ services:
       - unowned
 
   api:
-    image: airlance/go:1.26.compile
+    image: airlance/go:1.26.rc
     container_name: api
     volumes:
       - ./workspace/api:/app
@@ -49,7 +49,7 @@ services:
       - unowned
 
   worker:
-    image: airlance/go:1.26.compile
+    image: airlance/go:1.26.rc
     container_name: worker
     volumes:
       - ./workspace/api:/app
