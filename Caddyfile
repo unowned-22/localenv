@@ -25,3 +25,7 @@ http://mailpit.localhost {
 http://db.localhost {
     reverse_proxy adminer:8080
 }
+
+http://search.localhost {
+    reverse_proxy meilisearch:7700
+}
